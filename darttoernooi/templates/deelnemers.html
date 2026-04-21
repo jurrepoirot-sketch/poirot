@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deelnemers</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #1e272e;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 70%;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #ff4757;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f1f2f6;
+        }
+
+        a {
+            color: #70a1ff;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Deelnemers</h1>
+
+<table>
+    <tr>
+        <th>Naam</th>
+        <th>Bijnaam</th>
+        <th>Opkomstlied</th>
+        <th>Actie</th>
+    </tr>
+
+    {% for d in deelnemers %}
+    <tr>
+        <td>{{ d[1] }}</td>
+        <td>{{ d[2] }}</td>
+        <td>{{ d[3] }}</td>
+        <td><a href="/delete/{{ d[0] }}">❌ Verwijder</a>
+</td>
+    </tr>
+    {% endfor %}
+
+    {% if session.get("admin") %}
+<td><a href="/delete/{{ d[0] }}">❌</a></td>
+{% endif %}
+</table>
+
+<a href="/">⬅ Terug</a>
+
+{% if session.get("admin") %}
+<th>Actie</th>
+{% endif %}
+
+</body>
+</html>
